@@ -4,110 +4,256 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Beautiful Landing Page</title>
+    <title>NGINX Modern Landing Page</title>
     <style>
         body {
-            font-family: Arial, sans-serif;
+            font-family: 'Orbitron', 'Segoe UI', Arial, sans-serif;
             line-height: 1.6;
             margin: 0;
             padding: 0;
-            background-color: #f0f0f0;
-            color: #333;
+            background: radial-gradient(circle at 20% 20%, #0f2027 0%, #2c5364 100%);
+            color: #fff;
         }
         header {
-            background: url('images/career-quiz.png') no-repeat center center/cover;
+            margin: 5em 4em;
+            background: linear-gradient(120deg, #00f2fe 0%, #4facfe 80%);
+            border-radius: 2em;
             color: #fff;
-            padding: 100px 0;
-            height: 150px;
+            padding: 90px 0 50px 0;
             text-align: center;
+            box-shadow: 0 0 40px #00f2fe99;
+            animation: neonPulse 2.5s infinite alternate;
+        }
+        @keyframes neonPulse {
+            0% { box-shadow: 0 0 40px #00f2fe99; }
+            100% { box-shadow: 0 0 80px #00f2fecc; }
         }
         header h1 {
-            font-size: 3em;
-            margin: 0;
+            font-size: 3.5em;
+            margin-bottom: 10px;
+            letter-spacing: 2px;
+            text-shadow: 0 0 20px #00f2fe, 0 0 40px #4facfe;
+            animation: textGlow 2s infinite alternate;
+        }
+        @keyframes textGlow {
+            0% { text-shadow: 0 0 20px #00f2fe, 0 0 40px #4facfe; }
+            100% { text-shadow: 0 0 40px #00f2fe, 0 0 80px #4facfe; }
         }
         header p {
-            font-size: 1.2em;
+            font-size: 1.3em;
+            max-width: 600px;
+            margin: 0 auto;
+            text-shadow: 0 0 10px #00f2fe;
         }
         nav {
-            background: #333;
+            background: #181818;
             color: #fff;
             display: flex;
-            justify-content: space-around;
-            padding: 15px 0;
+            justify-content: center;
+            gap: 40px;
+            padding: 18px 0;
+            box-shadow: 0 0 20px #00f2fe44;
         }
         nav a {
-            color: #fff;
+            color: #00f2fe;
             text-decoration: none;
-            font-weight: bold;
+            font-weight: 600;
+            font-size: 1.15em;
+            letter-spacing: 1px;
+            transition: color 0.2s, text-shadow 0.2s;
+            text-shadow: 0 0 8px #00f2fe99;
+        }
+        nav a:hover {
+            color: #fff;
+            text-shadow: 0 0 16px #00f2fe, 0 0 32px #4facfe;
         }
         .container {
-            padding: 20px;
+            padding: 40px 20px;
+            max-width: 1200px;
+            margin: 0 auto;
         }
-        .grid {
-            display: flex;
-            gap: 20px;
-            flex-wrap: wrap;
+        .info-section {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(320px, 1fr));
+            gap: 40px;
+            margin-bottom: 40px;
         }
-        .card {
-            background: #fff;
-            border-radius: 8px;
-            box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
-            flex: 1;
-            min-width: 280px;
-            max-width: 300px;
-            padding: 15px;
+        .info-card {
+            background: #181818;
+            border-radius: 18px;
+            box-shadow: 0 0 24px #00f2fe44, 0 0 8px #4facfe44;
+            padding: 36px 24px;
+            text-align: center;
+            position: relative;
+            overflow: hidden;
+            transition: transform 0.3s, box-shadow 0.3s;
+            animation: cardFadeIn 1.2s;
         }
-        .card img {
-            border-radius: 8px;
+        @keyframes cardFadeIn {
+            from { opacity: 0; transform: translateY(40px); }
+            to { opacity: 1; transform: translateY(0); }
+        }
+        .info-card:hover {
+            transform: translateY(-8px) scale(1.03);
+            box-shadow: 0 0 48px #00f2fecc, 0 0 24px #4facfecc;
+        }
+        .info-card img {
+            width: 90px;
+            margin-bottom: 18px;
+            filter: drop-shadow(0 0 12px #00f2fe);
+            animation: imgGlow 2s infinite alternate;
+        }
+        @keyframes imgGlow {
+            0% { filter: drop-shadow(0 0 12px #00f2fe); }
+            100% { filter: drop-shadow(0 0 24px #4facfe); }
+        }
+        .info-card h2 {
+            color: #00f2fe;
+            text-shadow: 0 0 8px #00f2fe99;
+        }
+        .info-card ul, .info-card p {
+            color: #e0eafc;
+        }
+        .comparison-table {
             width: 100%;
-            height: auto;
+            border-collapse: collapse;
+            background: #181818;
+            border-radius: 18px;
+            overflow: hidden;
+            box-shadow: 0 0 24px #00f2fe44, 0 0 8px #4facfe44;
+            margin-bottom: 40px;
+            animation: tableFadeIn 1.5s;
+        }
+        @keyframes tableFadeIn {
+            from { opacity: 0; transform: scale(0.95); }
+            to { opacity: 1; transform: scale(1); }
+        }
+        .comparison-table th, .comparison-table td {
+            padding: 18px;
+            text-align: left;
+        }
+        .comparison-table th {
+            background: linear-gradient(90deg, #00f2fe 0%, #4facfe 100%);
+            color: #fff;
+            text-shadow: 0 0 8px #00f2fe99;
+        }
+        .comparison-table tr:nth-child(even) {
+            background: #222;
+        }
+        .comparison-table tr:nth-child(odd) {
+            background: #181818;
+        }
+        .comparison-table td {
+            color: #e0eafc;
         }
         footer {
-            background: #333;
-            color: #fff;
+            background: #181818;
+            color: #00f2fe;
             text-align: center;
-            padding: 20px 0;
-            margin-top: 20px;
+            padding: 28px 0;
+            margin-top: 40px;
+            box-shadow: 0 0 20px #00f2fe44;
+            text-shadow: 0 0 8px #00f2fe99;
         }
+        @media (max-width: 900px) {
+            .info-section {
+                grid-template-columns: 1fr;
+                gap: 20px;
+            }
+        }
+        /* Neon font import */
+        @import url('https://fonts.googleapis.com/css2?family=Orbitron:wght@700&display=swap');
     </style>
 </head>
 
 <body>
     <header>
+        <h1>NGINX</h1>
+        <p>The blazing fast, lightweight, and modern web server powering the internet. Discover what NGINX is, how it works, and how it compares to other web servers like Apache.</p>
     </header>
     <nav>
-        <a href="#home">Home</a>
-        <a href="#about">Best Courses</a>
-        <a href="#services">Fun Tutorials</a>
-        <a href="#contact">About TechWorld with Nana</a>
+        <a href="#nginx">What is NGINX?</a>
+        <a href="#uses">Use Cases</a>
+        <a href="#comparison">Comparison</a>
     </nav>
     <div class="container">
-        <h2>TechWorld with Nana Programs</h2>
-        <div class="grid">
-            <div class="card">
-                <img src="images/devops.png?crop=entropy&fit=crop&w=400&h=200" alt="Service 1">
-                <h3>DevOps Bootcamp</h3>
-                <p>Finally learn with structured guided course, all DevOps tools together</p>
+        <section id="nginx" class="info-section">
+            <div class="info-card">
+                <img src="images/devops.png" alt="NGINX Logo">
+                <h2>What is NGINX?</h2>
+                <p>NGINX is a high-performance, open-source web server, reverse proxy, and load balancer. It is known for its speed, scalability, and low resource usage. Originally designed for handling many concurrent connections, NGINX is now used by some of the largest sites in the world.</p>
             </div>
-            <div class="card">
-                <img src="images/it-beginners.png?crop=entropy&fit=crop&w=400&h=200" alt="Service 2">
-                <h3>Software Development LifeCycle Course</h3>
-                <p>Learn the entire software Development lifecycle, from developing, to testing, to provisioning server and deploying</p>
+            <div class="info-card">
+                <img src="images/it-beginners.png" alt="Use Cases">
+                <h2>Main Uses</h2>
+                <ul style="text-align:left;">
+                    <li>Serving static and dynamic web content</li>
+                    <li>Reverse proxy for applications</li>
+                    <li>Load balancing across servers</li>
+                    <li>SSL/TLS termination</li>
+                    <li>API gateway</li>
+                </ul>
             </div>
-            <div class="card">
-                <img src="images/devsecops.png?crop=entropy&fit=crop&w=400&h=200" alt="Service 3">
-                <h3>DevSecOps Bootcamp</h3>
-                <p>If you wanna become a DevOps engineer on steroids, you can face this advanced bootcamp</p>
+            <div class="info-card">
+                <img src="images/devsecops.png" alt="Performance">
+                <h2>Why Choose NGINX?</h2>
+                <ul style="text-align:left;">
+                    <li>Handles thousands of connections with low memory usage</li>
+                    <li>Highly configurable and modular</li>
+                    <li>Excellent for microservices and cloud-native apps</li>
+                    <li>Strong community and commercial support</li>
+                </ul>
             </div>
-        </div>
+        </section>
+        <section id="comparison">
+            <h2 style="text-align:center; margin-bottom:20px;">NGINX vs Other Web Servers</h2>
+            <table class="comparison-table">
+                <tr>
+                    <th>Feature</th>
+                    <th>NGINX</th>
+                    <th>Apache</th>
+                </tr>
+                <tr>
+                    <td>Performance</td>
+                    <td>Event-driven, handles high concurrency efficiently</td>
+                    <td>Process/thread-based, less efficient for high concurrency</td>
+                </tr>
+                <tr>
+                    <td>Resource Usage</td>
+                    <td>Low</td>
+                    <td>Moderate to high</td>
+                </tr>
+                <tr>
+                    <td>Configuration</td>
+                    <td>Simple, declarative</td>
+                    <td>Flexible, but can be complex</td>
+                </tr>
+                <tr>
+                    <td>Static Content</td>
+                    <td>Very fast</td>
+                    <td>Fast</td>
+                </tr>
+                <tr>
+                    <td>Dynamic Content</td>
+                    <td>Via FastCGI, reverse proxy</td>
+                    <td>Direct (mod_php, etc.)</td>
+                </tr>
+                <tr>
+                    <td>Platform</td>
+                    <td>Linux, Windows, macOS</td>
+                    <td>Linux, Windows, macOS</td>
+                </tr>
+                <tr>
+                    <td>Popularity</td>
+                    <td>Very high (used by Netflix, Dropbox, etc.)</td>
+                    <td>High (used by Wikipedia, Facebook, etc.)</td>
+                </tr>
+            </table>
+        </section>
     </div>
     <footer>
-        <p>&copy; TechWorld with Nana. All Rights Reserved.</p>
-        <p>Follow us on:
-            <a href="#" style="color: #3b5998;">Linkedin</a> |
-            <a href="#" style="color: #00aced;">Twitter</a> |
-            <a href="#" style="color: #e4405f;">Instagram</a>
-        </p>
+        <p>&copy; 2025 NGINX Landing Page. All Rights Reserved.</p>
+        <p>Contact: <a href="mailto:info@nginx.com" style="color: #26a69a;">info@nginx.com</a></p>
     </footer>
 </body>
 
