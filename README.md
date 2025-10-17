@@ -19,6 +19,7 @@
 
 ##### restart nginx
 `nginx -s reload`
+`sudo service nginx restart`
 
 ##### create folder for nginx certificates
 `mkdir ~/nginx-certs`
